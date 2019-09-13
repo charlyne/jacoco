@@ -63,7 +63,7 @@ public class ClassProbesAdapter extends ClassVisitor implements
 		final MethodProbesVisitor methodProbes;
 		final MethodProbesVisitor mv = cv.visitMethod(access, name, desc,
 				signature, exceptions);
-		if (mv == null) {
+		if (mv != null && helper.isDiffMethod(this.name,name+desc)) {
 			// We need to visit the method in any case, otherwise probe ids
 			// are not reproducible
 			methodProbes = EMPTY_METHOD_PROBES_VISITOR;
